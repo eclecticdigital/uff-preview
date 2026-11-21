@@ -45,14 +45,46 @@ img{display:block}
 .top .right{display:flex;gap:22px;justify-content:flex-end;font-size:15px;flex:1 1 0}
 .menu{display:none;width:44px;height:44px;border:0;background:none;padding:0}
 
-/* hero */
-.hero{position:relative;height:min(78vh,760px);min-height:540px;overflow:hidden;background:var(--sand)}
-.hero picture img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%}
-.hero .fade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(246,241,234,0) 42%,rgba(246,241,234,.9) 70%)}
-.hero .copy{position:absolute;right:max(56px, env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);max-width:460px;display:flex;flex-direction:column;gap:20px}
-.hero h1{font-size:clamp(56px,6.4vw,92px);line-height:.94}
-.hero .sub{font-size:19px;color:var(--body);max-width:390px}
+/* hero slider: the photo frame is 3:4, so every portrait shows the whole figure; only the sides of a wider photo are trimmed */
+.hero{--h:clamp(540px, min(100svh - 108px, 66vw), 860px);position:relative;display:grid;grid-template-columns:auto minmax(0,1fr);height:var(--h);background:var(--chalk);overflow:hidden}
+.hero .stage{position:relative;width:calc(var(--h) * .75);height:100%;overflow:hidden;background:var(--sand);touch-action:pan-y}
+.hero .stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity .9s ease, transform 7s ease-out}
+.hero .stage img.on{opacity:1;transform:scale(1)}
+.hero .panel{position:relative;display:flex;flex-direction:column;justify-content:center;gap:40px;padding:48px max(56px, env(safe-area-inset-right,0px)) 48px clamp(40px,6vw,96px)}
+.hero .copies{display:grid}
+.hero .copy{grid-area:1/1;display:flex;flex-direction:column;align-items:flex-start;gap:20px;max-width:520px;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease, visibility 0s linear .6s}
+.hero .copy.on{opacity:1;visibility:visible;transform:none;transition:opacity .7s ease .15s, transform .7s ease .15s, visibility 0s}
+.hero .ht{font-size:clamp(52px,6vw,92px);line-height:.94}
+.hero .sub{font-size:19px;color:var(--body);max-width:420px}
 .hero .btns{display:flex;gap:12px;flex-wrap:wrap}
+.hero .ctrl{display:flex;align-items:center;gap:18px;max-width:520px}
+.hero .count{font-size:13px;letter-spacing:.12em;color:var(--graphite);font-variant-numeric:tabular-nums;min-width:58px}
+.hero .bars{display:flex;gap:6px;flex:1 1 auto}
+.hero .bars button{flex:1 1 0;min-width:24px;height:28px;padding:0;border:0;background:none;cursor:pointer;position:relative}
+.hero .bars button::before,.hero .bars button i{content:"";position:absolute;left:0;right:0;top:13px;height:2px;background:var(--line)}
+.hero .bars button i{right:auto;width:0;background:var(--ink)}
+.hero .bars button.done i{width:100%}
+.hero .bars button.on i{animation:fill var(--dur,6.5s) linear forwards}
+.hero.paused .bars button.on i{animation-play-state:paused}
+.hero.still .bars button.on i{animation:none;width:100%}
+@keyframes fill{from{width:0}to{width:100%}}
+.hero .arrows{display:flex;gap:8px}
+.hero .arrows button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.hero .arrows button:hover{border-color:var(--ink)}
+.hero .next{position:absolute;right:max(56px, env(safe-area-inset-right,0px));bottom:48px;display:flex;align-items:flex-end;gap:14px;border:0;background:none;padding:0;cursor:pointer;text-align:right;font-family:inherit;color:var(--ink)}
+.hero .next span{display:flex;flex-direction:column;gap:2px;font-size:15px}
+.hero .next small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite)}
+.hero .next .thumb{width:132px;aspect-ratio:3/4;overflow:hidden;background:var(--sand)}
+.hero .next .thumb img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.hero .next:hover .thumb img{transform:scale(1.05)}
+@media (max-width:1499px){ .hero .next{display:none} }
+.vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+/* tablets and phones: photo on top at its full 3:4 frame (never cropped top or bottom), copy below */
+@media (max-width:1023px){
+  .hero{--h:auto;display:block;height:auto}
+  .hero .stage{width:min(100%, calc(78svh * .75));height:auto;aspect-ratio:3/4;margin:0 auto}
+  .hero .panel{padding:36px max(32px, env(safe-area-inset-right,0px)) 48px max(32px, env(safe-area-inset-left,0px));gap:32px}
+}
 
 /* sections */
 .sec{padding-block:96px}
@@ -126,15 +158,12 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
   .top nav,.top .right a:not(:last-child){display:none}
   .menu{display:flex;align-items:center}
   .top .in{height:60px}
-  .hero{height:auto;min-height:0;aspect-ratio:auto}
-  .hero picture img{position:relative;height:72svh;min-height:520px;object-position:center 30%}
-  .hero .fade{background:linear-gradient(0deg,rgba(23,22,20,.78) 0%,rgba(23,22,20,0) 48%)}
-  .hero .copy{left:max(20px, env(safe-area-inset-left,0px));right:max(20px, env(safe-area-inset-right,0px));top:auto;bottom:28px;transform:none;color:var(--on-photo);max-width:none;gap:14px}
-  .hero .eyebrow{color:rgba(252,250,246,.85)}
-  .hero h1{font-size:52px}
-  .hero .sub{display:none}
-  .hero .btn.solid{background:var(--paper);color:var(--ink)}
-  .hero .btn.line{border-color:var(--paper);color:var(--paper)}
+  .hero .panel{padding:28px max(20px, env(safe-area-inset-right,0px)) 40px max(20px, env(safe-area-inset-left,0px));gap:28px}
+  .hero .ht{font-size:46px}
+  .hero .sub{font-size:17px}
+  .hero .copy{gap:14px}
+  .hero .ctrl{gap:12px}
+  .hero .count{display:none}
   .sec{padding-block:56px}
   .tiles{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin-right:calc(-1 * max(24px, env(safe-area-inset-right,0px)));padding-right:24px;scrollbar-width:none}
   .tiles::-webkit-scrollbar{display:none}
@@ -156,7 +185,7 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
   .seen .pic{min-height:400px}
   footer .links{gap:32px}
 }
-@media (prefers-reduced-motion: reduce){ .tile img,.occ img{transition:none} }
+@media (prefers-reduced-motion: reduce){ .tile img,.occ img,.hero .stage img,.hero .copy,.hero .next .thumb img{transition:none} .hero .stage img{transform:none} }
 </style>
 </head>
 <body>
@@ -171,17 +200,51 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
 </header>
 
 <main>
-  <section class="hero" aria-label="The launch collection">
-    <picture>
-      <source media="(max-width:760px)" srcset="img/hero_mobile.jpg">
-      <img src="img/hero_wide.jpg" alt="A woman in a pale shirt-dress in a concrete hallway, looking back">
-    </picture>
-    <div class="fade"></div>
-    <div class="copy">
-      <p class="eyebrow">The launch collection</p>
-      <h1>Go on.<br>Let them look<span class="dot">.</span></h1>
-      <p class="sub">Co-ords, kaftans, dresses, shirts and short kurtis, for work, evenings and the weekend. The detail is for the second look.</p>
-      <div class="btns"><a class="btn solid" href="#shop">Shop the collection</a><a class="btn line" href="shirt-dress.html">Look closer</a></div>
+  <section class="hero" id="hero" aria-roledescription="carousel" aria-label="The launch collection">
+    <h1 class="vh">UFF, the launch collection</h1>
+    <div class="stage">
+      <img src="img/scroll_hero.jpg" alt="A woman standing in an ivory shirt-dress with a thin tan belt, in a bare concrete room" style="object-position:57% 50%" class="on">
+      <img aria-hidden="true" src="img/work_corridor.jpg" alt="A woman walking down a glass-walled corridor in a cropped white shirt with an embroidered yoke and black trousers, holding a laptop and an orange cup" style="object-position:45% 50%" decoding="async">
+      <img aria-hidden="true" src="img/weekend_coord.jpg" alt="A woman in a grey-green shirt and trouser co-ord with embroidery down the placket, sitting on a concrete ledge outdoors and holding an orange cup" style="object-position:50% 50%" decoding="async">
+      <img aria-hidden="true" src="img/evening_rooftop.jpg" alt="A woman on a rooftop at dusk in a sheer shirt worn open over a black slip dress" style="object-position:40% 50%" decoding="async">
+    </div>
+    <div class="panel">
+      <div class="copies" aria-live="off">
+        <div class="copy on" role="group" aria-roledescription="slide" aria-label="1 of 4: Shirt-dress" data-label="Shirt-dress">
+          <p class="eyebrow">The launch collection</p>
+          <h2 class="ht">Go on.<br>Let them look<span class="dot">.</span></h2>
+          <p class="sub">An ivory shirt-dress, belted at the waist. The detail is at the cuff, for the second look.</p>
+          <div class="btns"><a class="btn solid" href="#shop">Shop the collection</a><a class="btn line" href="shirt-dress.html">Look closer</a></div>
+        </div>
+        <div class="copy" role="group" aria-roledescription="slide" aria-label="2 of 4: Shirt" data-label="Shirt" aria-hidden="true" inert>
+          <p class="eyebrow">Shirts</p>
+          <h2 class="ht">A white shirt that earns a second look<span class="dot">.</span></h2>
+          <p class="sub">Cropped and easy through the body. Look again at the yoke.</p>
+          <div class="btns"><a class="btn solid" href="#shop">Shop shirts</a><a class="btn line" href="#second">See the detail</a></div>
+        </div>
+        <div class="copy" role="group" aria-roledescription="slide" aria-label="3 of 4: Co-ord" data-label="Co-ord" aria-hidden="true" inert>
+          <p class="eyebrow">Co-ords</p>
+          <h2 class="ht">Two pieces.<br>No thinking<span class="dot">.</span></h2>
+          <p class="sub">A shirt and trousers that work as a pair, or apart with what you already own.</p>
+          <div class="btns"><a class="btn solid" href="#shop">Shop co-ords</a></div>
+        </div>
+        <div class="copy" role="group" aria-roledescription="slide" aria-label="4 of 4: Evening layer" data-label="Evening layer" aria-hidden="true" inert>
+          <p class="eyebrow">After six</p>
+          <h2 class="ht">Throw it over anything<span class="dot">.</span></h2>
+          <p class="sub">A sheer shirt worn open over a black slip dress. The detail shows up best against the black.</p>
+          <div class="btns"><a class="btn solid" href="#shop">Shop shirts</a></div>
+        </div>
+      </div>
+      <div class="ctrl">
+        <span class="count" aria-hidden="true"><b>01</b> / 04</span>
+        <div class="bars"><button type="button" aria-label="Show slide 1: Shirt-dress" class="on" aria-current="true"><i></i></button><button type="button" aria-label="Show slide 2: Shirt"><i></i></button><button type="button" aria-label="Show slide 3: Co-ord"><i></i></button><button type="button" aria-label="Show slide 4: Evening layer"><i></i></button></div>
+        <div class="arrows">
+          <button type="button" data-go="-1" aria-label="Previous slide"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+          <button type="button" data-go="1" aria-label="Next slide"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.6" fill="none"/></svg></button>
+          <button type="button" data-pause aria-label="Pause slides"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path class="ic-pause" d="M5.5 3.5v9M10.5 3.5v9" stroke="currentColor" stroke-width="1.8"/><path class="ic-play" d="M5 3.2v9.6L12.5 8z" fill="currentColor" style="display:none"/></svg></button>
+        </div>
+      </div>
+      <button class="next" type="button" data-go="1" tabindex="-1" aria-hidden="true"><span><small>Next</small><b class="nl">Shirt</b></span><div class="thumb"><img src="img/work_corridor.jpg" alt="" style="object-position:45% 50%"></div></button>
     </div>
   </section>
 
@@ -198,7 +261,7 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
     </div>
   </section>
 
-  <section class="second" aria-label="The second look">
+  <section class="second" id="second" aria-label="The second look">
     <div class="pic">
       <img src="img/detail_macro.jpg" alt="Hand embroidery at the cuff of a white shirt, up close" loading="lazy">
       <span class="mark" aria-hidden="true"></span><span class="lab">The cuff</span>
@@ -273,6 +336,65 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
 </footer>
 
 <script>
+(function(){
+  var hero=document.getElementById('hero'); if(!hero) return;
+  var imgs=hero.querySelectorAll('.stage img'), copies=hero.querySelectorAll('.copy'), bars=hero.querySelectorAll('.bars button');
+  var count=hero.querySelector('.count b'), nextLab=hero.querySelector('.next .nl'), nextImg=hero.querySelector('.next img');
+  var copiesWrap=hero.querySelector('.copies'), pauseBtn=hero.querySelector('[data-pause]'), icPause=pauseBtn.querySelector('.ic-pause'), icPlay=pauseBtn.querySelector('.ic-play');
+  var n=imgs.length, i=0, timer=null, DUR=6500;
+  var still=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var userPaused=still, hover=false, focus=false;
+  hero.style.setProperty('--dur', DUR+'ms');
+  function setPauseUI(){
+    pauseBtn.setAttribute('aria-label', userPaused?'Play slides':'Pause slides');
+    icPause.style.display=userPaused?'none':''; icPlay.style.display=userPaused?'':'none';
+    hero.classList.toggle('still', userPaused);
+  }
+  function running(){ return !userPaused && !hover && !focus && !document.hidden; }
+  function arm(){ clearTimeout(timer); hero.classList.toggle('paused', !running()); copiesWrap.setAttribute('aria-live', running()?'off':'polite'); if(running()) timer=setTimeout(function(){ show(i+1); }, DUR); }
+  function show(k){
+    var moveFocus=copies[i].contains(document.activeElement);
+    i=(k+n)%n;
+    for(var j=0;j<n;j++){
+      var on=j===i;
+      imgs[j].classList.toggle('on',on);
+      if(on) imgs[j].removeAttribute('aria-hidden'); else imgs[j].setAttribute('aria-hidden','true');
+      copies[j].classList.toggle('on',on);
+      copies[j].inert=!on;
+      if(on) copies[j].removeAttribute('aria-hidden'); else copies[j].setAttribute('aria-hidden','true');
+      bars[j].classList.toggle('on',on); bars[j].classList.toggle('done',j<i);
+      if(on) bars[j].setAttribute('aria-current','true'); else bars[j].removeAttribute('aria-current');
+      var b=bars[j].querySelector('i'); b.style.animation='none'; void b.offsetWidth; b.style.animation='';
+    }
+    // focus was on a link in the slide that just left: keep it in the carousel, on this slide's bar
+    if(moveFocus) bars[i].focus({preventScroll:true});
+    count.textContent=(i+1<10?'0':'')+(i+1);
+    var nx=(i+1)%n;
+    nextLab.textContent=copies[nx].getAttribute('data-label');
+    nextImg.src=imgs[nx].getAttribute('src'); nextImg.style.objectPosition=imgs[nx].style.objectPosition;
+    arm();
+  }
+  // resuming restarts the current slide, so the progress bar and the timer stay in step
+  function resume(){ if(running()) show(i); else arm(); }
+  bars.forEach(function(b,k){ b.addEventListener('click',function(){ show(k); }); });
+  hero.querySelectorAll('[data-go]').forEach(function(b){ b.addEventListener('click',function(){ show(i+parseInt(b.getAttribute('data-go'),10)); }); });
+  pauseBtn.addEventListener('click',function(){ userPaused=!userPaused; setPauseUI(); resume(); });
+  // hover pauses for a mouse only, and focus pauses for keyboard focus only, so a tap or click never stops autoplay for good
+  hero.addEventListener('pointerenter',function(e){ if(e.pointerType==='mouse'){ hover=true; arm(); } });
+  hero.addEventListener('pointerleave',function(e){ if(e.pointerType==='mouse'){ hover=false; resume(); } });
+  hero.addEventListener('focusin',function(e){ var kb=false; try{ kb=e.target.matches(':focus-visible'); }catch(_){} if(kb){ focus=true; arm(); } });
+  hero.addEventListener('focusout',function(e){ if(!hero.contains(e.relatedTarget)){ focus=false; resume(); } });
+  document.addEventListener('visibilitychange',function(){ resume(); });
+  hero.addEventListener('keydown',function(e){
+    if(e.target.closest && e.target.closest('input,textarea')) return;
+    if(e.key==='ArrowRight'){ e.preventDefault(); show(i+1); } else if(e.key==='ArrowLeft'){ e.preventDefault(); show(i-1); }
+  });
+  var stage=hero.querySelector('.stage'), x0=null, y0=null;
+  stage.addEventListener('pointerdown',function(e){ x0=e.clientX; y0=e.clientY; });
+  stage.addEventListener('pointerup',function(e){ if(x0===null) return; var dx=e.clientX-x0, dy=e.clientY-y0; x0=null; if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)) show(i+(dx<0?1:-1)); });
+  stage.addEventListener('pointercancel',function(){ x0=null; });
+  setPauseUI(); arm();
+})();
 document.getElementById('join').addEventListener('submit', function(e){
   e.preventDefault();
   var v = document.getElementById('wa').value.replace(/\D/g, '');
