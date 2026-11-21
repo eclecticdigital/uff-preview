@@ -60,7 +60,10 @@ p{margin:0}
 /* hero copy */
 .hero-fade{position:absolute;inset:0 0 0 auto;width:34%;background:linear-gradient(270deg,rgba(246,241,234,.9) 0%,rgba(246,241,234,.72) 60%,rgba(246,241,234,0) 100%);pointer-events:none}
 .hero-copy{position:absolute;right:max(56px, env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);max-width:360px;display:flex;flex-direction:column;gap:18px}
-.hero-copy h1{font-size:clamp(52px,6.4vw,92px);line-height:.94}
+.hero-copy .disp{font-family:var(--f-display);font-size:clamp(52px,6.4vw,92px);line-height:.94;margin:0;text-wrap:balance}
+.hero-copy .disp em{font-style:italic}
+.hero-copy h1.pdp-name{font-family:var(--f-text);font-weight:500;line-height:1.4}
+.tag-h{text-transform:none;letter-spacing:.04em}
 .hero-copy .sub{font-size:18px;color:var(--body)}
 .cue{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--graphite)}
 .cue span{display:block;width:1px;height:36px;background:var(--graphite);transform-origin:top;animation:cue 1.8s ease-in-out infinite}
@@ -231,6 +234,7 @@ footer p{font-size:13px;color:#A39B8E}
   .pdp section{padding-block:56px}
 }
 @media (prefers-reduced-motion: reduce){ .cue span{animation:none} }
+h1 em{font-style:italic}
 </style>
 </head>
 <body>
@@ -254,9 +258,9 @@ footer p{font-size:13px;color:#A39B8E}
       <div class="hero-fade" id="heroFade"></div>
       <div class="scrim hero-scrim" style="display:none"></div>
       <div class="hero-copy" id="C-hero">
-        <p class="eyebrow" style="color:inherit;opacity:.75">Dresses</p>
-        <h1>Go on.<br>Let them look<span class="dot">.</span></h1>
-        <p class="sub">The ivory shirt-dress, from across the room to up close.</p>
+        <h1 class="eyebrow pdp-name" style="color:inherit;opacity:.85">Shirt-dress, ivory</h1>
+        <p class="disp">Mud ke tho <em>dekho</em><span class="dot">.</span></p>
+        <p class="sub">&#8220;Turn around and take a look.&#8221; From across the room to up close.</p>
         <div class="cue"><span></span>Scroll to look closer</div>
       </div>
     </div>
@@ -383,11 +387,11 @@ footer p{font-size:13px;color:#A39B8E}
 
   <div class="seen">
     <div class="txt">
-      <p class="eyebrow">Seen on you</p>
-      <h2>The reaction is the review<span class="dot">.</span></h2>
-      <p>Real customers in their own UFF, tagged with the size they chose. Shared with permission.</p>
+      <p class="eyebrow">Seen on you &#183; <span class="tag-h">#MudKeThoDekho</span></p>
+      <h2>Caught someone turning<span class="dot">?</span></h2>
+      <p>Post the moment a friend looks back at your UFF and tag #MudKeThoDekho. We share our favourites, with your permission, and the size you chose.</p>
     </div>
-    <div class="pic"><img src="img/ugc_mirror.jpg" alt="A customer's mirror photo, placeholder"><span class="tag">Wearing size S</span></div>
+    <div class="pic"><img src="img/ugc_mirror.jpg" alt="Placeholder for a customer photo: a woman in a white shirt with an embroidered collar, close up"><span class="tag">Size S &#183; placeholder</span></div>
   </div>
 
   <footer class="gut"><div class="in"><img src="img/logo_white.png" alt="UFF"><p>Indicative design for the UFF pitch by Eclectic Digital. Photos are AI-generated placeholders.</p></div></footer>

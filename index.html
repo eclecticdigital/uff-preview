@@ -52,7 +52,8 @@ img{display:block}
 .hero .slide.on{opacity:1}
 .hero .slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--mp,50% 50%);transform:scale(1.04);transition:transform 7s ease-out}
 .hero .slide.on img{transform:scale(1)}
-.hero .shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(23,22,20,.82) 0%,rgba(23,22,20,.35) 34%,rgba(23,22,20,0) 56%);pointer-events:none}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(23,22,20,.86) 0%,rgba(23,22,20,.58) 42%,rgba(23,22,20,0) 70%);pointer-events:none}
+.hero .copy{text-shadow:0 1px 14px rgba(23,22,20,.45)}
 .hero .copies{position:absolute;left:max(20px, env(safe-area-inset-left,0px));right:max(20px, env(safe-area-inset-right,0px));bottom:84px;display:grid}
 .hero .copy{grid-area:1/1;align-self:end;display:flex;flex-direction:column;align-items:flex-start;gap:14px;opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease, visibility 0s linear .6s}
 .hero .copy.on{opacity:1;visibility:visible;transform:none;transition:opacity .7s ease .15s, transform .7s ease .15s, visibility 0s}
@@ -76,6 +77,55 @@ img{display:block}
 .hero .arrows{display:flex;gap:8px}
 .hero .arrows button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(252,250,246,.55);background:rgba(23,22,20,.18);color:var(--paper);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .hero .arrows [data-go]{display:none}
+/* Mud ke tho dekho: the campaign band. Text, then a 9:16 preview of the launch film playing its three beats, then the beats. */
+.hero em,.mkd em{font-style:italic}
+.hero .tr{font-family:var(--f-display);font-style:italic;font-size:22px;line-height:1.2;opacity:.92}
+.mkd{background:var(--ink);color:var(--chalk);padding:64px max(20px, env(safe-area-inset-right,0px)) 72px max(20px, env(safe-area-inset-left,0px))}
+.mkd .in{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:32px}
+.mkd .head{display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;flex-wrap:nowrap;margin:0;gap:14px}
+.mkd .eyebrow{color:var(--orange)}
+.mkd h2{font-size:clamp(52px,13vw,104px);line-height:.92}
+.mkd h2 em{color:var(--orange)}
+.mkd .tr{font-family:var(--f-display);font-style:italic;font-size:24px;color:#E9E2D6}
+.mkd .body{font-size:17px;color:#D8D1C5;max-width:460px}
+.mkd .beats{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid #3A3833;align-self:stretch;max-width:560px}
+.mkd .beats li{display:flex;gap:16px;align-items:baseline;padding:16px 0 16px 14px;border-bottom:1px solid #3A3833;border-left:2px solid transparent;opacity:.82;transition:opacity .4s ease, border-color .4s ease}
+.mkd .beats li.on{opacity:1;border-left-color:var(--orange)}
+.mkd .beats span{font-family:var(--f-display);font-size:28px;color:var(--orange);min-width:22px}
+.mkd .beats b{display:block;font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.1}
+.mkd .beats small{display:block;font-size:16px;color:#BDB6AA}
+.mkd .foot{display:flex;flex-direction:column;gap:28px;align-items:flex-start}
+.reel{margin:0 auto;width:min(82vw, 340px)}
+.reel .ph{position:relative;aspect-ratio:9/16;border-radius:26px;overflow:hidden;background:#000;box-shadow:0 0 0 6px #2A2824}
+.reel .fr{position:absolute;inset:0;opacity:0;transition:opacity .5s ease}
+.reel .fr.on{opacity:1}
+.reel .fr img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 2.6s ease-out}
+.reel .fr.on img{transform:scale(1)}
+.reel .fr::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.6) 18%,rgba(0,0,0,0) 45%)}
+.reel .cap{position:absolute;left:18px;right:18px;bottom:20px;z-index:1;font-size:16px;color:#fff}
+.reel .cap i{font-style:normal;color:var(--orange);margin-right:8px;font-variant-numeric:tabular-nums}
+.reel .end{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:var(--ink);text-align:center}
+.reel .end::after{display:none}
+.reel .end b{font-family:var(--f-display);font-weight:400;font-size:44px;line-height:.95;color:var(--chalk)}
+.reel .end b em{color:var(--orange)}
+.reel .end img{width:auto;height:44px;transform:none}
+.reel .segs{position:absolute;left:12px;right:12px;top:12px;z-index:2;display:flex;gap:4px}
+.reel .segs i{flex:1;height:2px;background:rgba(255,255,255,.35);overflow:hidden;position:relative}
+.reel .segs i::after{content:"";position:absolute;inset:0;width:0;background:#fff}
+.reel .segs i.done::after{width:100%}
+.reel .segs i.on::after{animation:fill var(--fdur,2.4s) linear forwards}
+.reel.paused .segs i.on::after{animation-play-state:paused}
+.reel .tl{position:absolute;right:10px;top:24px;z-index:2;width:44px;height:44px;border:0;border-radius:50%;background:rgba(23,22,20,.65);box-shadow:inset 0 0 0 1px rgba(255,255,255,.45);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+.reel figcaption{margin-top:14px;font-size:16px;color:#BDB6AA;text-align:center}
+@media (min-width:900px){
+  .mkd{padding-block:104px}
+  .mkd .in{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto 1fr;column-gap:80px;row-gap:40px;align-items:start}
+  .mkd .head{grid-column:1;grid-row:1}
+  .mkd .foot{grid-column:1;grid-row:2}
+  .reel{grid-column:2;grid-row:1 / span 2;width:360px}
+}
+@media (prefers-reduced-motion: reduce){ .reel .fr,.reel .fr img,.mkd .beats li{transition:none} .reel .fr img{transform:none} }
+.tag-h{text-transform:none;letter-spacing:.04em}
 .vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* desktop: one big slide, photo right, its left edge melting into a backdrop sampled from the photo */
@@ -218,8 +268,9 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
     <div class="copies" aria-live="off">
       <div class="copy on" role="group" aria-roledescription="slide" aria-label="1 of 4: Shirt-dress">
         <p class="eyebrow">The launch collection</p>
-        <h2 class="ht">Go on.<br>Let them look<span class="dot">.</span></h2>
-        <p class="sub">Co-ords, kaftans, dresses, shirts and short kurtis, for work, evenings and the weekend. The detail is for the second look.</p>
+        <h2 class="ht">Mud ke tho <em>dekho</em><span class="dot">.</span></h2>
+        <p class="tr">&#8220;Turn around and take a look.&#8221;</p>
+        <p class="sub">Co-ords, kaftans, dresses, shirts and short kurtis, with the detail saved for the second look.</p>
         <div class="btns"><a class="btn solid" href="#shop">Shop the collection</a><a class="btn line" href="shirt-dress.html">Look closer</a></div>
       </div>
       <div class="copy" role="group" aria-roledescription="slide" aria-label="2 of 4: Shirt" aria-hidden="true" inert>
@@ -265,6 +316,36 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
     </div>
   </section>
 
+  <section class="mkd" id="campaign" aria-label="Mud ke tho dekho">
+    <div class="in">
+      <div class="head">
+        <p class="eyebrow"><span class="tag-h">#MudKeThoDekho</span></p>
+        <h2>Mud ke tho <em>dekho</em>.</h2>
+        <p class="tr">&#8220;Turn around and take a look.&#8221;</p>
+        <p class="body">Some outfits get a glance. These get a second look: first her, then the turn, then the detail.</p>
+      </div>
+      <figure class="reel" id="reel" aria-label="Launch film preview">
+        <div class="ph">
+          <div class="segs" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <div class="fr on" data-beat="0"><img src="img/scroll_hero.jpg" alt="A woman in an ivory shirt-dress, full length" style="object-position:50% 50%"><p class="cap"><i>0s</i>She walks past</p></div>
+          <div class="fr" data-beat="1" aria-hidden="true"><img src="img/hero_wide.jpg" alt="Placeholder still: a woman glancing back over her shoulder" style="object-position:24% 50%" loading="lazy"><p class="cap"><i>2s</i>Someone turns</p></div>
+          <div class="fr" data-beat="2" aria-hidden="true"><img src="img/macro_collar.jpg" alt="Embroidery at the collar and yoke of the ivory shirt-dress, up close" loading="lazy"><p class="cap"><i>4s</i>The embroidery, up close</p></div>
+          <div class="fr end" aria-hidden="true"><b>Mud ke tho<br><em>dekho.</em></b><img src="img/logo_white.png" alt="UFF" loading="lazy"></div>
+          <button class="tl" type="button" aria-label="Pause the film preview"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path class="ic-pause" d="M5.5 3.5v9M10.5 3.5v9" stroke="currentColor" stroke-width="1.8"/><path class="ic-play" d="M5 3.2v9.6L12.5 8z" fill="currentColor" style="display:none"/></svg></button>
+        </div>
+        <figcaption>The launch film, a 20-second Reel. Preview with placeholder stills.</figcaption>
+      </figure>
+      <div class="foot">
+        <ol class="beats">
+          <li class="on"><span>1</span><div><b>The look</b><small>Her whole outfit, first</small></div></li>
+          <li><span>2</span><div><b>The turn</b><small>Someone turns around to look again</small></div></li>
+          <li><span>3</span><div><b>The detail</b><small>The embroidery, up close</small></div></li>
+        </ol>
+        <a class="btn light" href="#shop">Shop the collection</a>
+      </div>
+    </div>
+  </section>
+
   <section class="second" id="second" aria-label="The second look">
     <div class="pic">
       <img src="img/detail_macro.jpg" alt="Hand embroidery at the cuff of a white shirt, up close" loading="lazy">
@@ -273,7 +354,7 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
     <div class="txt">
       <p class="eyebrow">The second look</p>
       <h2>Where you&#8217;d least expect it.</h2>
-      <p class="body">A cuff, a yoke, the back of a collar. Every piece carries one Chikankari detail, embroidered by hand and placed for the moment someone looks again.</p>
+      <p class="body">A cuff, a yoke, the back of a collar. Every piece carries a Chikankari detail, embroidered by hand and placed for the moment someone looks again.</p>
       <a class="arrow" href="shirt-dress.html">See the shirt-dress up close &#8594;</a>
     </div>
   </section>
@@ -303,12 +384,12 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
 
   <section class="seen" aria-label="Seen on you">
     <div class="txt">
-      <p class="eyebrow">Seen on you</p>
-      <h2>The reaction is the review<span class="dot">.</span></h2>
-      <p>Real customers in their own UFF, tagged with the size they chose. Shared with permission.</p>
+      <p class="eyebrow">Seen on you &#183; <span class="tag-h">#MudKeThoDekho</span></p>
+      <h2>Caught someone turning<span class="dot">?</span></h2>
+      <p>Post the moment a friend looks back at your UFF and tag #MudKeThoDekho. We share our favourites, with your permission, and the size you chose.</p>
       <a href="#" style="color:var(--chalk);font-weight:500">Share yours</a>
     </div>
-    <div class="pic"><img src="img/ugc_mirror.jpg" alt="A customer's mirror photo, placeholder" loading="lazy"><span class="tag">Wearing size S</span></div>
+    <div class="pic"><img src="img/ugc_mirror.jpg" alt="Placeholder for a customer photo: a woman in a white shirt with an embroidered collar, close up" loading="lazy"><span class="tag">Size S &#183; placeholder</span></div>
   </section>
 
   <section class="sec gut">
@@ -389,10 +470,33 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
   hero.addEventListener('pointercancel',function(){ x0=null; });
   setPauseUI(); arm();
 })();
+(function(){
+  var reel=document.getElementById('reel'); if(!reel) return;
+  var frs=reel.querySelectorAll('.fr'), segs=reel.querySelectorAll('.segs i'), beats=document.querySelectorAll('#campaign .beats li');
+  var btn=reel.querySelector('.tl'), n=frs.length, i=0, t=null, STEP=2400;
+  var paused=window.matchMedia('(prefers-reduced-motion: reduce)').matches, seen=false;
+  reel.style.setProperty('--fdur', STEP+'ms');
+  function ui(){ btn.setAttribute('aria-label', paused?'Play the film preview':'Pause the film preview');
+    btn.querySelector('.ic-pause').style.display=paused?'none':''; btn.querySelector('.ic-play').style.display=paused?'':'none'; }
+  function go(k){
+    i=(k+n)%n;
+    for(var j=0;j<n;j++){ var on=j===i; frs[j].classList.toggle('on',on); if(on) frs[j].removeAttribute('aria-hidden'); else frs[j].setAttribute('aria-hidden','true');
+      segs[j].classList.remove('on'); void segs[j].offsetWidth; if(on) segs[j].classList.add('on'); segs[j].classList.toggle('done',j<i); }
+    var bt=frs[i].getAttribute('data-beat');
+    beats.forEach(function(li,k){ li.classList.toggle('on', bt===null || String(k)===bt); });
+    var run=!paused && seen && !document.hidden; reel.classList.toggle('paused', !run);
+    clearTimeout(t); if(run) t=setTimeout(function(){ go(i+1); }, STEP);
+  }
+  btn.addEventListener('click',function(){ paused=!paused; ui(); go(i); });
+  document.addEventListener('visibilitychange',function(){ go(i); });
+  // play only while the band is on screen
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ seen=es[es.length-1].isIntersecting; go(i); },{threshold:.35}).observe(reel); } else { seen=true; }
+  ui(); go(0);
+})();
 document.getElementById('join').addEventListener('submit', function(e){
   e.preventDefault();
   var v = document.getElementById('wa').value.replace(/\D/g, '');
-  document.getElementById('joinOut').textContent = v.length >= 10 ? 'Thanks for joining. This is a prototype, so nothing was sent.' : 'Enter a 10-digit WhatsApp number.';
+  document.getElementById('joinOut').textContent = v.length >= 10 ? 'Your first message would read: “UFF is live. Wear it out today, and let them turn around. 🧡” This is a prototype, so nothing was sent.' : 'Enter a 10-digit WhatsApp number.';
 });
 </script>
 </body>
