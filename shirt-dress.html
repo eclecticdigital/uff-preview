@@ -235,6 +235,27 @@ footer p{font-size:13px;color:#A39B8E}
 }
 @media (prefers-reduced-motion: reduce){ .cue span{animation:none} }
 h1 em{font-style:italic}
+.sizefit{padding-top:72px;padding-bottom:24px}
+.sizefit .sf-head{display:flex;flex-direction:column;gap:10px;max-width:720px;margin-bottom:28px}
+.sizefit .eyebrow{color:var(--graphite)}
+.sizefit h2{font-size:clamp(34px,4vw,52px);line-height:1}
+.sizefit .lead{font-size:18px;color:var(--body)}
+.sf-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) minmax(0,.8fr);gap:16px}
+.sf-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px}
+.sf-card h3{font-family:var(--f-text);font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--graphite);margin-bottom:14px}
+.sf-card p{font-size:16px;color:var(--body)}
+.sf-table{width:100%;border-collapse:collapse;font-size:16px;font-variant-numeric:tabular-nums}
+.sf-table th,.sf-table td{text-align:left;padding:9px 6px;border-bottom:1px solid var(--line)}
+.sf-table thead th{font-size:13px;font-weight:600;color:var(--graphite)}
+.sf-table tr.on{background:#FFF1E8}
+.sf-table tr.on th{color:var(--orange)}
+.sf-note{margin-top:10px;font-size:14px!important;color:var(--graphite)!important}
+.sf-how{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;counter-reset:m}
+.sf-how li{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:10px;counter-increment:m}
+.sf-how li::before{content:counter(m);grid-row:1 / span 2;width:26px;height:26px;border-radius:50%;background:var(--orange);color:var(--ink);font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.sf-how b{font-weight:600;font-size:16px}
+.sf-how span{font-size:15px;color:var(--body)}
+@media (max-width:900px){ .sf-grid{grid-template-columns:minmax(0,1fr)} .sf-table{font-size:15px} }
 </style>
 </head>
 <body>
@@ -259,8 +280,8 @@ h1 em{font-style:italic}
       <div class="scrim hero-scrim" style="display:none"></div>
       <div class="hero-copy" id="C-hero">
         <h1 class="eyebrow pdp-name" style="color:inherit;opacity:.85">Shirt-dress, ivory</h1>
-        <p class="disp">Mud ke tho <em>dekho</em><span class="dot">.</span></p>
-        <p class="sub">&#8220;Turn around and take a look.&#8221; From across the room to up close.</p>
+        <p class="disp">The second <em>look</em><span class="dot">.</span></p>
+        <p class="sub">The ivory shirt-dress, from across the room to up close.</p>
         <div class="cue"><span></span>Scroll to look closer</div>
       </div>
     </div>
@@ -339,7 +360,7 @@ h1 em{font-style:italic}
         <h2>Shirt&#8209;dress, ivory</h2>
         <p class="price">₹5,450</p>
         <div class="sizes" role="group" aria-label="Size" data-sizes><button type="button" aria-pressed="false">XS</button><button type="button" aria-pressed="true">S</button><button type="button" aria-pressed="false">M</button><button type="button" aria-pressed="false">L</button><button type="button" aria-pressed="false">XL</button><button type="button" aria-pressed="false">XXL</button></div>
-        <div class="btns"><button class="btn solid" type="button" data-add style="border:0;cursor:pointer;font-family:inherit">Add to bag</button><a class="btn line" href="#details">Size and fit</a></div>
+        <div class="btns"><button class="btn solid" type="button" data-add style="border:0;cursor:pointer;font-family:inherit">Add to bag</button><a class="btn line" href="#size">Size and fit</a></div>
       </div>
     </div>
 
@@ -355,6 +376,48 @@ h1 em{font-style:italic}
 </section>
 
 <div class="pdp">
+  <section id="size" class="gut sizefit" aria-labelledby="sizeH">
+    <div class="sf-head">
+      <p class="eyebrow">Size and fit</p>
+      <h2 id="sizeH">Find your size in a minute<span class="dot">.</span></h2>
+      <p class="lead">Relaxed through the body, so most people take their usual size. The model is 5&#8242;7&#8243; and wears S.</p>
+    </div>
+    <div class="sf-grid">
+      <div class="sf-card">
+        <h3>Size chart, in inches</h3>
+        <table class="sf-table">
+          <thead><tr><th scope="col">Size</th><th scope="col">Bust</th><th scope="col">Waist</th><th scope="col">Hip</th><th scope="col">Length</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">XS</th><td>34</td><td>30</td><td>38</td><td>38</td></tr>
+            <tr class="on"><th scope="row">S</th><td>36</td><td>32</td><td>40</td><td>38.5</td></tr>
+            <tr><th scope="row">M</th><td>38</td><td>34</td><td>42</td><td>39</td></tr>
+            <tr><th scope="row">L</th><td>40</td><td>36</td><td>44</td><td>39.5</td></tr>
+            <tr><th scope="row">XL</th><td>42</td><td>38</td><td>46</td><td>40</td></tr>
+            <tr><th scope="row">XXL</th><td>44</td><td>40</td><td>48</td><td>40.5</td></tr>
+          </tbody>
+        </table>
+        <p class="sf-note">Garment measurements. The highlighted row is what the model wears.</p>
+      </div>
+      <div class="sf-card">
+        <h3>How to measure</h3>
+        <ol class="sf-how">
+          <li><b>Bust</b><span>Around the fullest part, tape level under the arms.</span></li>
+          <li><b>Waist</b><span>Around the narrowest part, usually just above the belly button.</span></li>
+          <li><b>Hip</b><span>Around the fullest part, feet together.</span></li>
+          <li><b>Length</b><span>From the top of the shoulder, next to the collar, down to where you want the hem.</span></li>
+        </ol>
+      </div>
+      <div class="sf-card">
+        <h3>Between two sizes?</h3>
+        <p>Take the smaller one for a neater fit, the larger one for a looser, easy fit.</p>
+        <h3 style="margin-top:22px">Still not sure?</h3>
+        <p>Send us your height and usual size on WhatsApp. A person replies.</p>
+        <p style="margin-top:10px"><a class="link" href="#">Ask on WhatsApp</a></p>
+      </div>
+    </div>
+    <p class="small">Indicative: the size chart is a placeholder until UFF shares its own.</p>
+  </section>
+
   <section id="details" class="gut">
     <p class="crumbs"><a href="index.html">Home</a> / <a href="index.html#shop">Dresses</a> / Shirt-dress, ivory</p>
     <div class="before">
@@ -366,14 +429,14 @@ h1 em{font-style:italic}
         </div>
       </div>
       <ul class="rows">
-        <li><h3>Fit</h3><div><p>Relaxed fit, so take your usual size. The model is 5′7″ and wears S.</p><p><a class="link" href="#">Find my size</a></p></div></li>
+        <li><h3>Fit</h3><div><p>Relaxed fit, so take your usual size. The model is 5′7″ and wears S.</p><p><a class="link" href="#size">Find my size</a></p></div></li>
         <li><h3>Fabric and care</h3><div><p>Soft cotton. Machine wash cold on a gentle cycle.</p></div></li>
         <li><h3>The detail</h3><div><p>Chikankari, embroidered by hand at the collar and on both cuffs.</p></div></li>
         <li><h3>Delivery</h3><div><p>Cash on delivery and easy size exchange.</p>
           <form class="pin" id="pinForm"><label for="pin" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Pincode</label><input id="pin" inputmode="numeric" maxlength="6" placeholder="Pincode" autocomplete="postal-code"><button type="submit">Check</button><output id="pinOut" aria-live="polite"></output></form></div></li>
       </ul>
     </div>
-    <p class="small">Indicative: fabric, care, fit, sizes and delivery terms are placeholders until UFF confirms them.</p>
+    <p class="small">Indicative: fabric, care, fit and delivery terms are placeholders until UFF confirms them.</p>
   </section>
 
   <section class="gut" style="padding-top:0">
@@ -387,9 +450,9 @@ h1 em{font-style:italic}
 
   <div class="seen">
     <div class="txt">
-      <p class="eyebrow">Seen on you &#183; <span class="tag-h">#MudKeThoDekho</span></p>
+      <p class="eyebrow">Seen on you &#183; <span class="tag-h">#SecondLookUFF</span></p>
       <h2>Caught someone turning<span class="dot">?</span></h2>
-      <p>Post the moment a friend looks back at your UFF and tag #MudKeThoDekho. We share our favourites, with your permission, and the size you chose.</p>
+      <p>Post the moment a friend looks twice at your UFF and tag #SecondLookUFF. We share our favourites, with your permission, and the size you chose.</p>
     </div>
     <div class="pic"><img src="img/ugc_mirror.jpg" alt="Placeholder for a customer photo: a woman in a white shirt with an embroidered collar, close up"><span class="tag">Size S &#183; placeholder</span></div>
   </div>

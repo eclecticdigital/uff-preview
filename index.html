@@ -77,7 +77,7 @@ img{display:block}
 .hero .arrows{display:flex;gap:8px}
 .hero .arrows button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(252,250,246,.55);background:rgba(23,22,20,.18);color:var(--paper);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 .hero .arrows [data-go]{display:none}
-/* Mud ke tho dekho: the campaign band. Text, then a 9:16 preview of the launch film playing its three beats, then the beats. */
+/* The second look: the campaign band. Text, then a 9:16 preview of the launch film playing its three beats, then the beats. */
 .hero em,.mkd em{font-style:italic}
 .hero .tr{font-family:var(--f-display);font-style:italic;font-size:22px;line-height:1.2;opacity:.92}
 .mkd{background:var(--ink);color:var(--chalk);padding:64px max(20px, env(safe-area-inset-right,0px)) 72px max(20px, env(safe-area-inset-left,0px))}
@@ -268,8 +268,7 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
     <div class="copies" aria-live="off">
       <div class="copy on" role="group" aria-roledescription="slide" aria-label="1 of 4: Shirt-dress">
         <p class="eyebrow">The launch collection</p>
-        <h2 class="ht">Mud ke tho <em>dekho</em><span class="dot">.</span></h2>
-        <p class="tr">&#8220;Turn around and take a look.&#8221;</p>
+        <h2 class="ht">The second <em>look</em><span class="dot">.</span></h2>
         <p class="sub">Co-ords, kaftans, dresses, shirts and short kurtis, with the detail saved for the second look.</p>
         <div class="btns"><a class="btn solid" href="#shop">Shop the collection</a><a class="btn line" href="shirt-dress.html">Look closer</a></div>
       </div>
@@ -316,12 +315,11 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
     </div>
   </section>
 
-  <section class="mkd" id="campaign" aria-label="Mud ke tho dekho">
+  <section class="mkd" id="campaign" aria-label="The second look">
     <div class="in">
       <div class="head">
-        <p class="eyebrow"><span class="tag-h">#MudKeThoDekho</span></p>
-        <h2>Mud ke tho <em>dekho</em>.</h2>
-        <p class="tr">&#8220;Turn around and take a look.&#8221;</p>
+        <p class="eyebrow"><span class="tag-h">#SecondLookUFF</span></p>
+        <h2>The second <em>look</em>.</h2>
         <p class="body">Some outfits get a glance. These get a second look: first her, then the turn, then the detail.</p>
       </div>
       <figure class="reel" id="reel" aria-label="Launch film preview">
@@ -330,7 +328,7 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
           <div class="fr on" data-beat="0"><img src="img/scroll_hero.jpg" alt="A woman in an ivory shirt-dress, full length" style="object-position:50% 50%"><p class="cap"><i>0s</i>She walks past</p></div>
           <div class="fr" data-beat="1" aria-hidden="true"><img src="img/hero_wide.jpg" alt="Placeholder still: a woman glancing back over her shoulder" style="object-position:24% 50%" loading="lazy"><p class="cap"><i>2s</i>Someone turns</p></div>
           <div class="fr" data-beat="2" aria-hidden="true"><img src="img/macro_collar.jpg" alt="Embroidery at the collar and yoke of the ivory shirt-dress, up close" loading="lazy"><p class="cap"><i>4s</i>The embroidery, up close</p></div>
-          <div class="fr end" aria-hidden="true"><b>Mud ke tho<br><em>dekho.</em></b><img src="img/logo_white.png" alt="UFF" loading="lazy"></div>
+          <div class="fr end" aria-hidden="true"><b>The second<br><em>look.</em></b><img src="img/logo_white.png" alt="UFF" loading="lazy"></div>
           <button class="tl" type="button" aria-label="Pause the film preview"><svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true"><path class="ic-pause" d="M5.5 3.5v9M10.5 3.5v9" stroke="currentColor" stroke-width="1.8"/><path class="ic-play" d="M5 3.2v9.6L12.5 8z" fill="currentColor" style="display:none"/></svg></button>
         </div>
         <figcaption>The launch film, a 20-second Reel. Preview with placeholder stills.</figcaption>
@@ -384,9 +382,9 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
 
   <section class="seen" aria-label="Seen on you">
     <div class="txt">
-      <p class="eyebrow">Seen on you &#183; <span class="tag-h">#MudKeThoDekho</span></p>
+      <p class="eyebrow">Seen on you &#183; <span class="tag-h">#SecondLookUFF</span></p>
       <h2>Caught someone turning<span class="dot">?</span></h2>
-      <p>Post the moment a friend looks back at your UFF and tag #MudKeThoDekho. We share our favourites, with your permission, and the size you chose.</p>
+      <p>Post the moment a friend looks twice at your UFF and tag #SecondLookUFF. We share our favourites, with your permission, and the size you chose.</p>
       <a href="#" style="color:var(--chalk);font-weight:500">Share yours</a>
     </div>
     <div class="pic"><img src="img/ugc_mirror.jpg" alt="Placeholder for a customer photo: a woman in a white shirt with an embroidered collar, close up" loading="lazy"><span class="tag">Size S &#183; placeholder</span></div>
@@ -496,7 +494,7 @@ footer .fine{margin-top:48px;font-size:13px;color:#8F887C}
 document.getElementById('join').addEventListener('submit', function(e){
   e.preventDefault();
   var v = document.getElementById('wa').value.replace(/\D/g, '');
-  document.getElementById('joinOut').textContent = v.length >= 10 ? 'Your first message would read: “UFF is live. Wear it out today, and let them turn around. 🧡” This is a prototype, so nothing was sent.' : 'Enter a 10-digit WhatsApp number.';
+  document.getElementById('joinOut').textContent = v.length >= 10 ? 'Your first message would read: “UFF is live. Wear it out today, and let them look twice. 🧡” This is a prototype, so nothing was sent.' : 'Enter a 10-digit WhatsApp number.';
 });
 </script>
 </body>
